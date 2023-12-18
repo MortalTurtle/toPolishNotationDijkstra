@@ -72,38 +72,38 @@ function toPolish(str)
 
 function reversePolish (polish) 
 {
-    let tokens = polish.split(" ");
-    let stack = new Array();
-    if(tokens == '')
-        return 0;
-    for(i = 0; i < tokens.length; i++) 
+	let tokens = polish.split(" ");
+	let stack = new Array();
+    	if(tokens == '')
+        	return 0;
+    	for(i = 0; i < tokens.length; i++) 
 	{
-        if(!isNaN(tokens[i]))
+        	if(!isNaN(tokens[i]))
 		{
-            stack.push(tokens[i]);
+            		stack.push(tokens[i]);
 			continue;
 		}
-            let a = parseInt(stack.pop());
-            let b = parseInt(stack.pop());
-			let res;
-			switch (tokens[i])
-			{
-				case '+' :
-					res = a + b;
-					break;
-				case '-' : 
-					res = b - a;
-					break;
-				case '*' :
-					res = a * b;
-					break;
-				case '/' :
-					res = b / a;
-					break;
-				case '^' :
-					res = Math.pow(b, a);
-			}
-			stack.push(res);
+        	let a = parseInt(stack.pop());
+        	let b = parseInt(stack.pop());
+		let res;
+		switch (tokens[i])
+		{
+			case '+' :
+				res = a + b;
+				break;
+			case '-' : 
+				res = b - a;
+				break;
+			case '*' :
+				res = a * b;
+				break;
+			case '/' :
+				res = b / a;
+				break;
+			case '^' :
+				res = Math.pow(b, a);
+		}
+		stack.push(res);
     }
     return stack[0];
 }
