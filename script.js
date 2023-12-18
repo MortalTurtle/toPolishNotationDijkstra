@@ -24,12 +24,11 @@ function toPolish(str)
 	priority['^'] = 3;
 	priority['('] = 0;
 	let stack = new Array();
-
 	for(let i = 0; i < tokens.length; i++)
 	{
 		if (!isNaN(tokens[i]))
 		{
-			out += tokens[i];
+			out += tokens[i] + " ";
 			continue;
 		}
 		switch (tokens[i])
@@ -42,7 +41,7 @@ function toPolish(str)
 				break;
 			case ')' :
 				while(stack[stack.length - 1] != '(')
-				out += stack.pop();
+				out += stack.pop() + " ";
 				stack.pop();
 				break;
 			default :
@@ -55,14 +54,14 @@ function toPolish(str)
 					stack.push(tokens[i]);
 					if (priority[tokens[i]] == priority[first])
 					{
-						out += first;
+						out += first + " ";
 						stack.pop();
 						stack.push(tokens[i]);
 					}
 					if (priority[tokens[i]] < priority[first]) 
 					{
 						while (priority[tokens[i]] <= priority[stack[stack.length - 1]])
-							out += stack.pop();
+							out += stack.pop() + " ";
 						stack.push(tokens[i]);
 					}
 				}
@@ -70,13 +69,13 @@ function toPolish(str)
 		}
 	}
 	while(stack.length !== 0)
-		out += stack.pop();
+		out += stack.pop() + " ";
 	return out;
 }
 
 function reversePolish (polish) 
 {
-    let tokens = polish.split("");
+    let tokens = polish.split(" ");
     let stack = new Array();
     if(tokens == '')
         return 0;
