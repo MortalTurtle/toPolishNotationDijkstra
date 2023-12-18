@@ -4,7 +4,7 @@ let str = arg[2];
 let polish = toPolish(str);
 console.log(polish);
 let evalStr = str.replaceAll("^", "**");
-var res = reversePolish(polish);
+var res = calculateReversePolish(polish);
 if (eval(evalStr) == res)
     console.log(true);
 else 
@@ -70,7 +70,7 @@ function toPolish(str)
 	return notation;
 }
 
-function reversePolish (polish) 
+function calculateReversePolish (polish) 
 {
 	let tokens = polish.split(" ");
 	let stack = new Array();
