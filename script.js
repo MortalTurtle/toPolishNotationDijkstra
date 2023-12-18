@@ -33,10 +33,7 @@ function toPolish(str)
 		}
 		switch (tokens[i])
 		{
-			case '^' :
-				stack.push(tokens[i]);
-				break;
-			case '(' :
+			case '^','(' :
 				stack.push(tokens[i]);
 				break;
 			case ')' :
