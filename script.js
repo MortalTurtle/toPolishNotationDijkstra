@@ -17,7 +17,7 @@ console.log(res);
 function toPolish(str)
 {	
 	let tokens = str.split(' ')
-	let out = '';
+	let notation = '';
 	let priority= new Object();
 	priority['-'] = priority['+'] = 1;
 	priority['*'] = priority['/'] = 2;
@@ -28,7 +28,7 @@ function toPolish(str)
 	{
 		if (!isNaN(tokens[i]))
 		{
-			out += tokens[i] + " ";
+			notation += tokens[i] + " ";
 			continue;
 		}
 		switch (tokens[i])
@@ -38,27 +38,27 @@ function toPolish(str)
 				break;
 			case ')' :
 				while(stack[stack.length - 1] != '(')
-				out += stack.pop() + " ";
+				notation += stack.pop() + " ";
 				stack.pop();
 				break;
 			default :
-				let first = stack[stack.length - 1];
+				let top = stack[stack.length - 1];
 				if (stack.length == 0) 
 					stack.push(tokens[i]);
 				else 
 				{
-					if (priority[tokens[i]] > priority[first]) 
+					if (priority[tokens[i]] > priority[top]) 
 					stack.push(tokens[i]);
-					if (priority[tokens[i]] == priority[first])
+					if (priority[tokens[i]] == priority[top])
 					{
-						out += first + " ";
+						notation += top + " ";
 						stack.pop();
 						stack.push(tokens[i]);
 					}
-					if (priority[tokens[i]] < priority[first]) 
+					if (priority[tokens[i]] < priority[top]) 
 					{
 						while (priority[tokens[i]] <= priority[stack[stack.length - 1]])
-							out += stack.pop() + " ";
+							notation += stack.pop() + " ";
 						stack.push(tokens[i]);
 					}
 				}
@@ -66,8 +66,8 @@ function toPolish(str)
 		}
 	}
 	while(stack.length !== 0)
-		out += stack.pop() + " ";
-	return out;
+		notation += stack.pop() + " ";
+	return notation;
 }
 
 function reversePolish (polish) 
