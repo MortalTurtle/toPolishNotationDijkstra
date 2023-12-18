@@ -41,12 +41,12 @@ function toPolish(str)
 				stack.push(tokens[i]);
 				break;
 			case ')' :
-				while(stack.at(-1) != '(')
+				while(stack[stack.length - 1] != '(')
 				out += stack.pop();
 				stack.pop();
 				break;
 			default :
-				let first = stack.at(-1);
+				let first = stack[stack.length - 1];
 				if (stack.length == 0) 
 					stack.push(tokens[i]);
 				else 
@@ -61,7 +61,7 @@ function toPolish(str)
 					}
 					if (priority[tokens[i]] < priority[first]) 
 					{
-						while (priority[tokens[i]] <= priority[stack.at(-1)])
+						while (priority[tokens[i]] <= priority[stack[stack.length - 1]])
 							out += stack.pop();
 						stack.push(tokens[i]);
 					}
